@@ -6,11 +6,13 @@ namespace App\Models;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
@@ -64,6 +66,11 @@ class User extends Authenticatable
     {
         return $this->role === 'member';
     }
+    /** Seulement les admins peuvent accéder au panel */
+public function canAccessPanel(Panel $panel): bool
+{
+    return $this->isAdmin();
+}
  
     // ── Relations ─────────────────────────────────────────────
  

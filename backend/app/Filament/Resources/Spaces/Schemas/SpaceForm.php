@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Spaces\Schemas;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput as UrlInput;
 use Filament\Schemas\Schema;
 
 class SpaceForm
@@ -51,6 +52,13 @@ class SpaceForm
                     ])
                     ->required()
                     ->default('disponible'),
+
+                TextInput::make('image')
+                    ->label('URL de l\'image')
+                    ->url()
+                    ->placeholder('https://images.unsplash.com/...')
+                    ->maxLength(500)
+                    ->columnSpanFull(),
 
                 Textarea::make('description')
                     ->label('Description')
