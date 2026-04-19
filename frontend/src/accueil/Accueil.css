@@ -1,0 +1,474 @@
+body {
+  margin: 0;
+  font-family: white;
+}
+
+/* NAVBAR */
+.navbar {
+  background:#778198;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+}
+
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.menu li {
+  color: #c8a97e;
+  font-family: "Inter", sans-serif;
+  font-weight: bold; /* bold */
+  cursor: pointer;
+  position: relative; 
+  font-size: 20px;
+}
+
+/* underline effect */
+.menu li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: #c8a97e; /* gold */
+  transition: 0.3s;
+}
+
+/* hover */
+.menu li:hover::after {
+  width: 100%;
+}
+
+
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  padding: 60px;
+  align-items: center;
+}
+
+.hero-text h1 {
+  font-size: 35px;
+  color:#2a3245;
+}
+
+.hero-img {
+  width: 300px;
+  height: 180px;
+  border: 2px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CARDS */
+.cards {
+  text-align: center;
+  padding: 40px;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  width: 220px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px#2a3245;
+}
+
+.img {
+  height: 120px;
+  border: 2px dashed #ccc;
+  margin-bottom: 10px;
+}
+
+.logo-img {
+  width: 110px;
+  height: 80px;
+  
+  border-radius: 50%;
+  object-fit: cover; 
+}
+.btn.primary {
+  background:#2a3245;
+  color: #c8a97e;
+}
+/* Hover effect */
+.btn.primary:hover {
+  background: #2a3245;  
+  color: white;
+  transform: translateY(-2px); 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+
+
+
+
+/* FOOTER */
+.footer {
+  background:#2a3245;
+  color: #c8a97e;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
+.title {
+  color: #1a2130;
+  font-family: "Inter", sans-serif;
+ 
+  background: none;
+  -webkit-text-fill-color: #1a2130;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #c8a97e; 
+  margin: 10px auto 0;
+  transition: 0.3s;
+}
+
+
+.title:hover::after {
+  width: 100px;
+}
+
+
+.navbar .menu {
+  flex-direction: row !important;
+  gap: 90px; 
+  display: flex;
+   display: flex;
+  justify-content: center; 
+  align-items: center;
+  gap: 80px; 
+
+  padding: 0;
+  margin: 0 auto;
+  
+}
+h2 {
+  text-align: center;
+   
+}
+
+
+
+/* TITRE SUB */
+.subtitle {
+  text-align: center;
+  color: #777;
+  margin-bottom: 30px;
+}
+
+/* AVANTAGES */
+.avantages {
+  padding: 50px;
+  text-align: center;
+}
+
+.avantages-grid {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 30px;
+}
+
+.avantage span {
+  font-size: 40px;
+}
+
+.avantage p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #2a3245;
+}
+
+/* ABONNEMENTS */
+.abonnements {
+  padding: 50px;
+  text-align: center;
+}
+
+.abonnement-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.abonnement-card {
+  background: white;
+  padding: 25px;
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.abonnement-card h3 {
+  margin-bottom: 15px;
+  color: #2a3245;
+}
+
+.abonnement-card p {
+  margin-bottom: 20px;
+}
+
+/* CARD PREMIUM */
+.premium {
+  background: linear-gradient(135deg, #2a3245, #1e3a5f);
+  color: white;
+}
+
+.premium button {
+  background: #f4a300;
+  color: black;
+}
+
+
+
+
+
+.logo .circle {
+  width: 80px !important;
+  height: 80px !important;
+
+  min-width: 80px !important;
+  min-height: 80px !important;
+
+  flex: none !important;
+
+  border: 2px solid #c8a97e;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+  color: #c8a97e;
+   animation: glowPulse 2s infinite ease-in-out;
+}
+
+
+
+
+
+.hero-img {
+  width: 500px;
+  height: 300px;
+  
+  overflow: hidden;
+  position: relative;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+
+.hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* light effect */
+.hero-img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(200,169,126,0.4),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  animation: lightMove 3s ease-in-out infinite;
+}
+
+/* animation */
+@keyframes lightMove {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 120%;
+  }
+  100% {
+    left: 120%;
+  }
+}
+
+
+.description {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #202636;
+  text-align: center;
+  max-width: 600px;
+  margin: 20px auto;
+
+  /* luxury touch */
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-family: 'Playfair Display', serif;
+
+  /* effect doux */
+  opacity: 0.9;
+}
+
+
+.description::first-letter {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2a3245; 
+}
+
+
+.title-lux {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: #1f2a44; 
+  letter-spacing: 1px;
+  margin: 20px 0;
+  position: relative;
+}
+
+
+.title-lux::after {
+  content: "";
+  width: 60px;
+  height: 2px;
+  background: #c8a97e; 
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+
+
+
+/* MOBILE (max 768px) */
+
+@media (max-width: 768px) {
+
+  /* NAVBAR */
+  .navbar {
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  /* HERO */
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 200px;
+  }
+
+  /* GRID / CARDS */
+  .grid,
+  .offre-container,
+  .avantages-grid,
+  .abonnement-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .card,
+  .offre-card,
+  .abonnement-card {
+    width: 90%;
+  }
+
+  /* TABLE */
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+
+  /* SEARCH */
+  .search {
+    width: 100%;
+  }
+
+}
+
+
+
+/*  TABLET (max 1024px) */
+
+@media (max-width: 1024px) {
+
+  .grid,
+  .offre-container,
+  .abonnement-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card,
+  .offre-card {
+    width: 45%;
+  }
+
+  .hero-img {
+    width: 350px;
+    height: 220px;
+  }
+
+}
+
+
+
+/*  SMALL LAPTOP */
+
+@media (max-width: 1200px) {
+
+  .hero {
+    gap: 30px;
+  }
+
+  .menu {
+    gap: 40px;
+  }
+
+}

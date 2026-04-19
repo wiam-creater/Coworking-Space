@@ -1,0 +1,291 @@
+:root {
+  --navy: #2a3245;
+  --gold: #c8a97e;
+  --bg: #e6d3a3;
+}
+
+/* RESET */
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: var(--bg);
+}
+
+/* LAYOUT */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* NAVBAR (*/
+.sidebar {
+  width: 100%;
+  height: 90px; 
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  box-shadow: 0 4px 20px #2a3245;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.circle {
+  width: 45px;
+  height: 45px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* MENU */
+.menu {
+  display: flex;
+  gap: 40px;
+  margin: 0 auto;
+}
+
+.menu a {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 16px;
+  position: relative;
+ font-family: "Inter", sans-serif;
+  font-weight: bold; 
+}
+
+/* underline */
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0%;
+  height: 2px;
+  background: var(--gold);
+  transition: 0.3s;
+}
+
+.menu a:hover::after,
+.menu .active::after {
+  width: 100%;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CONTENT */
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* CARD */
+.card {
+  width: 100%;
+  max-width: 1100px;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px #2a3245;
+}
+
+/* TITLE */
+.card h1 {
+  text-align: center;
+  color:#2a3245;
+  margin-bottom: 30px;
+  font-family: "Inter", sans-serif;
+  font-weight: bold; 
+}
+
+/* TOP BAR */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+/* SEARCH */
+.search input {
+  width: 350px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+}
+
+/* BUTTON */
+.add-btn {
+  background: var(--gold);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* TABLE */
+.table-box {
+  width: 100%;
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  
+  color: var(--gold);
+}
+
+th, td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+th{
+  background: #2a3245;
+}
+
+tbody tr:hover {
+  background: #f9f9f9;
+}
+
+/* TEXT */
+.name {
+  color: var(--gold);
+  font-weight: bold;
+}
+
+.job {
+  font-size: 13px;
+  color: gray;
+}
+
+.center {
+  text-align: center;
+}
+
+
+
+/* MOBILE (max 768px) */
+
+@media (max-width: 768px) {
+
+  /* NAVBAR */
+  .navbar {
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  /* HERO */
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 200px;
+  }
+
+  /* GRID / CARDS */
+  .grid,
+  .offre-container,
+  .avantages-grid,
+  .abonnement-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .card,
+  .offre-card,
+  .abonnement-card {
+    width: 90%;
+  }
+
+  /* TABLE */
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+
+  /* SEARCH */
+  .search {
+    width: 100%;
+  }
+
+}
+
+
+
+/*  TABLET (max 1024px) */
+
+@media (max-width: 1024px) {
+
+  .grid,
+  .offre-container,
+  .abonnement-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card,
+  .offre-card {
+    width: 45%;
+  }
+
+  .hero-img {
+    width: 350px;
+    height: 220px;
+  }
+
+}
+
+
+
+/*  SMALL LAPTOP */
+
+@media (max-width: 1200px) {
+
+  .hero {
+    gap: 30px;
+  }
+
+  .menu {
+    gap: 40px;
+  }
+
+}

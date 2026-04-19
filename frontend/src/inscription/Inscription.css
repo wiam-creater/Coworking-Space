@@ -1,0 +1,319 @@
+/* PAGE */
+.page {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+    linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)),
+    url("https://images.unsplash.com/photo-1556761175-4b46a572b786");
+
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  animation: zoomBg 25s ease-in-out infinite;
+}
+
+/* ANIMATION */
+@keyframes zoomBg {
+  0% { background-size: 100%; }
+  50% { background-size: 110%; }
+  100% { background-size: 100%; }
+}
+
+/* CONTAINER */
+.container {
+  width: 370px;
+  
+  padding: 30px;
+  border-radius: 18px;
+
+  background: rgb(119, 132, 149);
+ 
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+/* HOVER CARD */
+.container:hover {
+  transform: translateY(-5px);
+}
+
+/* TITLE */
+h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #2b374f;
+
+  position: relative;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* UNDERLINE ANIMATION */
+h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 3;
+  height: 3px;
+  background-color: #c8a97e;
+  transition: width 0.3s ease;
+}
+
+h1:hover::after {
+  width: 100%;
+}
+
+/* LABEL */
+label {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  color: #2b374f;
+  font-weight: bold;
+}
+
+/* INPUT */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+
+  border-radius: 8px;
+  border: 1px solid #ddd;
+
+  background: white;
+  color: #2b374f;
+
+  transition: 0.3s;
+}
+
+/* INPUT HOVER */
+input:hover {
+  border-color: #c8a97e;
+}
+
+/* INPUT FOCUS */
+input:focus {
+  border-color: #c8a97e;
+  box-shadow: 0 0 10px rgba(200,169,126,0.5);
+  outline: none;
+}
+
+/* BUTTON */
+.btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+
+  border: none;
+  border-radius: 10px;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  background: #c8a97e;
+  color: #2b374f;
+
+  transition: 0.3s;
+}
+
+/* BUTTON HOVER */
+.btn:hover {
+  background: #b8966c;
+  transform: translateY(-2px);
+}
+
+/* SMALL TEXT */
+.small-text {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #2b374f;
+}
+
+/* LINK STYLE */
+.routeur {
+  display: block;
+  text-align: center;
+
+  margin-top: 10px;
+  padding: 10px;
+
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  background: #2b374f;
+  color: #c8a97e;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* HOVER LINK */
+.routeur:hover {
+  background: #1f2937;
+  transform: scale(1.03);
+}
+
+
+
+/* 📱 MOBILE */
+@media (max-width: 600px) {
+
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  input {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .routeur {
+    padding: 8px;
+    font-size: 13px;
+  }
+}
+
+/* 💻 TABLET */
+@media (min-width: 601px) and (max-width: 1024px) {
+
+  .container {
+    width: 70%;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+}
+
+
+
+
+
+/* MOBILE (max 768px) */
+
+@media (max-width: 768px) {
+
+  /* NAVBAR */
+  .navbar {
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  /* HERO */
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 200px;
+  }
+
+  /* GRID / CARDS */
+  .grid,
+  .offre-container,
+  .avantages-grid,
+  .abonnement-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .card,
+  .offre-card,
+  .abonnement-card {
+    width: 90%;
+  }
+
+  /* TABLE */
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+
+  /* SEARCH */
+  .search {
+    width: 100%;
+  }
+
+}
+
+
+
+/*  TABLET (max 1024px) */
+
+@media (max-width: 1024px) {
+
+  .grid,
+  .offre-container,
+  .abonnement-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card,
+  .offre-card {
+    width: 45%;
+  }
+
+  .hero-img {
+    width: 350px;
+    height: 220px;
+  }
+
+}
+
+
+
+/*  SMALL LAPTOP */
+
+@media (max-width: 1200px) {
+
+  .hero {
+    gap: 30px;
+  }
+
+  .menu {
+    gap: 40px;
+  }
+
+}

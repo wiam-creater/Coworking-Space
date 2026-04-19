@@ -19,6 +19,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
+
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -30,11 +31,13 @@ class AdminPanelProvider extends PanelProvider
             ->login()
            ->brandName('Dar Work')
             ->brandLogo(asset('images/logo.png'))
-            ->brandLogoHeight('3rem')
+           ->brandLogoHeight('3rem')     
+          
+
             ->colors([
                 
-    'primary' => Color::hex('#c8a97e'),
-    'gray'    => Color::hex('#34476e'),
+   'primary' => Color::hex('#2a3245'),   // vanilla / doré
+    'gray'    => Color::hex('#c8a97e'),   // dark blue
 
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')

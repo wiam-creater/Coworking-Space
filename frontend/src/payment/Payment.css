@@ -1,0 +1,505 @@
+/* ---------- GLOBAL LUXE ---------- */
+body {
+  background:  rgb(241, 217, 166); /* Vanilla premium */
+  font-family: "Inter", "Poppins", sans-serif;
+  color:#2b374f; /* Navy profond */
+  padding: 0;
+  margin: 0;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  background: #2b374f; /* Navy */
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.nav-links {
+  display: flex;
+  gap: 45px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #f7f1e8;
+  font-weight: 500;
+  font-size: 10px;
+  position: relative;
+  transition: 0.4s ease;
+}
+
+/* Ligne or en hover (effet luxe) */
+.nav-links a::after {
+  content: "";
+  font-size: 10px;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #c8a97e; /* Or */
+  transition: 0.4s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #c8a97e;
+  color: #c8a97e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- MAIN CONTAINER ---------- */
+.main-container {
+  max-width: 1100px;
+  margin: 50px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  border: 1px solid #e7e7e7;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- TITLE + SEARCH ---------- */
+.title-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.title-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-left h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  color:#2b374f;
+  
+}
+
+/* Search box */
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  width: 260px;
+  padding: 10px 15px 10px 38px;
+  border-radius: 30px;
+  border: 1px solid #c8c8c8;
+  background: #fdfbf6;
+  transition: 0.3s;
+}
+
+.search-box input:focus {
+  border-color: #c8a97e;
+  box-shadow: 0 0 8px rgba(200, 169, 126, 0.4);
+}
+
+.search-icon {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  color: #777;
+}
+
+/* ---------- TABS ---------- */
+.tabs {
+  display: flex;
+  margin-bottom: -1px;
+}
+
+.tab,
+.tab-active {
+  padding: 12px 30px;
+  border: 1px solid #d6d6d6;
+  background: #f7f1e8;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.tab:hover {
+  background: #ede4d7;
+}
+
+.tab-active {
+  background: white;
+  border-bottom: 1px solid white;
+  color: #1a2130;
+}
+
+/* ---------- TABLE ---------- */
+.table-container {
+  border: 1px solid #d6d6d6;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #1a2130; /* Navy */
+  color: #f7f1e8;
+}
+
+th, td {
+  padding: 16px;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 15px;
+  
+}
+
+.status {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #c8a97e;
+  color: #1a2130;
+  background: #f7f1e8;
+}
+
+/* ---------- BUTTON ---------- */
+.pay-btn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1px solid #1a2130;
+  background: white;
+  color: #1a2130;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.pay-btn:hover {
+  background: #1a2130;
+  color: #f7f1e8;
+  box-shadow: 0 0 10px rgba(26, 33, 48, 0.4);
+}
+
+/* ---------- FOOTER LINK ---------- */
+.see-more a {
+  font-size: 10px;
+  color: #1a2130;
+  text-decoration: underline;
+  transition: 0.3s ease;
+}
+
+.see-more a:hover {
+  color: #c8a97e;
+}
+
+.nav-links a {
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  
+  color: #f7f1e8;         /* Vanilla luxe */
+  position: relative;
+  transition: 0.4s ease;
+   display: flex;
+  
+}
+
+/* Effet finition luxe Or */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: #c8a97e;    /* Gold */
+  transition: 0.4s ease-in-out;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+
+
+/* Header du tableau */
+th {
+  font-family: "Inter", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+  color: #c8a97e;        
+  background: #1a2130;        
+  padding: 16px;
+  font-size: 14px;
+
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Effet hover – une ligne suave et arrondie */
+th::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 2px;
+  background: #c8a97e;      /* Gold luxury */
+  border-radius: 50px;      /* Ligne arrondie */
+  transition: 0.35s ease-in-out;
+}
+
+
+
+
+
+
+/* Container */
+.search-box {
+  position: relative;
+  width: 26px;
+}
+
+
+
+/* Container */
+.search-box {
+  position: relative;
+  width: 320px;
+}
+
+/* Input */
+.search-input {
+  width: 10%;
+  padding: 10px ;
+  border-radius: 30px;
+  border: 2px solid #1a2130;   
+  font-family: "Inter", sans-serif;
+  background: #fdfbf6;        
+  color: #1a2130;
+  
+}
+
+/* Placeholder */
+.search-input::placeholder {
+  color: #999;
+  font-size: 14px;
+}
+
+/* Icon */
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 25%;
+  transform: translateY(-50%);
+  color: #1a2130;
+  font-size: 14px;
+}
+
+
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 20px;
+  font-weight: bold;
+  color: #c8a97e;
+}
+
+
+
+
+/* ANIMATION */
+@keyframes glowPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 5px #c8a97e;
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #c8a97e, 0 0 40px #c8a97e;
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 5px #c8a97e;
+  }
+}
+
+
+
+
+
+
+
+.logo .circle {
+  width: 80px !important;
+  height: 80px !important;
+
+  min-width: 80px !important;
+  min-height: 80px !important;
+
+  flex: none !important;
+
+  border: 2px solid #c8a97e;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+  color: #c8a97e;
+   animation: glowPulse 2s infinite ease-in-out;
+}
+
+
+
+
+.nav-links {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+}
+
+
+.nav-links a {
+  font-family: "Inter", sans-serif;
+  color: #c8a97e;
+  font-weight: bold;
+  font-size: 20px;
+  color: #f7f1e8;
+  text-decoration: none;
+
+  transition: 0.3s;
+}
+
+
+
+.th{
+  color: #c8a97e;
+}
+
+
+
+
+/* MOBILE (max 768px) */
+
+@media (max-width: 768px) {
+
+  /* NAVBAR */
+  .navbar {
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  /* HERO */
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 200px;
+  }
+
+  /* GRID / CARDS */
+  .grid,
+  .offre-container,
+  .avantages-grid,
+  .abonnement-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .card,
+  .offre-card,
+  .abonnement-card {
+    width: 90%;
+  }
+
+  /* TABLE */
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+
+  /* SEARCH */
+  .search {
+    width: 100%;
+  }
+
+}
+
+
+
+/*  TABLET (max 1024px) */
+
+@media (max-width: 1024px) {
+
+  .grid,
+  .offre-container,
+  .abonnement-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card,
+  .offre-card {
+    width: 45%;
+  }
+
+  .hero-img {
+    width: 350px;
+    height: 220px;
+  }
+
+}
+
+
+
+/*  SMALL LAPTOP */
+
+@media (max-width: 1200px) {
+
+  .hero {
+    gap: 30px;
+  }
+
+  .menu {
+    gap: 40px;
+  }
+
+}

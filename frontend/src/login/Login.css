@@ -1,0 +1,237 @@
+/* PAGE */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+    linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)),
+    url("https://images.unsplash.com/photo-1556761175-4b46a572b786");
+
+  background-size: cover;
+  background-position: center;
+
+  animation: zoomBg 25s ease-in-out infinite;
+}
+
+/* ANIMATION */
+@keyframes zoomBg {
+  0% { background-size: 100%; }
+  50% { background-size: 110%; }
+  100% { background-size: 100%; }
+}
+
+/* CARD */
+.login-container {
+  width: 350px;
+  padding: 30px;
+  border-radius: 15px;
+
+  background: rgba(119,132,149,0.95);
+  
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+/* TITLE */
+
+
+
+.login-container h2 {
+   font-family:"Inter", sans-serif ;
+  text-align: center;
+  color: #2a3245;
+  margin-bottom: 20px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.login-container h2:hover {
+  text-decoration: underline;
+  text-decoration-color: #c8a97e; /* gold */
+}
+/* FORM */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* LABEL */
+.login-form label {
+  color: #2a3245;
+  font-weight: bold;
+  font-size: medium;
+}
+
+/* INPUT */
+.login-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid white;
+  background: white;
+  transition: 0.3s;
+}
+
+/* INPUT HOVER */
+.login-form input:hover {
+  border-color: #c8a97e;
+}
+
+/* FOCUS */
+.login-form input:focus {
+  border-color: #c8a97e;
+  box-shadow: 0 0 8px rgba(200,169,126,0.5);
+  outline: none;
+}
+
+/* BUTTON */
+.login-form button {
+  font-family:"Inter", sans-serif ;
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  background: #c8a97e;
+  border-radius: 8px;
+  color:#2a3245 ;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* HOVER */
+.login-form button:hover {
+  background: #b89465;
+  transform: scale(1.05);
+}
+
+
+
+/* TEXT */
+.signup-text {
+  text-align: center;
+  margin-top: 15px;
+  color: #2a3245;
+  font-size: 14px;
+}
+
+/* LINK */
+.signup-link {
+  color: #2a3245; /* gold */
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: 0.3s;
+}
+
+/* HOVER */
+.signup-link:hover {
+  text-decoration: underline;
+  color: #b89465;
+}
+
+
+
+
+/* MOBILE (max 768px) */
+
+@media (max-width: 768px) {
+
+  /* NAVBAR */
+  .navbar {
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  /* HERO */
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 200px;
+  }
+
+  /* GRID / CARDS */
+  .grid,
+  .offre-container,
+  .avantages-grid,
+  .abonnement-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .card,
+  .offre-card,
+  .abonnement-card {
+    width: 90%;
+  }
+
+  /* TABLE */
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+
+  /* SEARCH */
+  .search {
+    width: 100%;
+  }
+
+}
+
+
+
+/*  TABLET (max 1024px) */
+
+@media (max-width: 1024px) {
+
+  .grid,
+  .offre-container,
+  .abonnement-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card,
+  .offre-card {
+    width: 45%;
+  }
+
+  .hero-img {
+    width: 350px;
+    height: 220px;
+  }
+
+}
+
+
+
+/*  SMALL LAPTOP */
+
+@media (max-width: 1200px) {
+
+  .hero {
+    gap: 30px;
+  }
+
+  .menu {
+    gap: 40px;
+  }
+
+}
