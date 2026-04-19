@@ -6,26 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('spaces', function (Blueprint $table) {
             $table->id();
-             $table->string('name', 100);
+            $table->string('name', 100);
             $table->enum('type', ['bureau', 'salle_reunion', 'espace_ouvert', 'cabine']);
             $table->unsignedInteger('capacity')->default(1);
             $table->decimal('price_per_hour', 10, 2);
             $table->text('description')->nullable();
+            $table->string('image', 500)->nullable();  // ← ajouté
             $table->enum('status', ['disponible', 'indisponible', 'maintenance'])->default('disponible');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('spaces');
