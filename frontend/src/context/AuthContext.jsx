@@ -8,11 +8,18 @@ export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [loading, setLoading] = useState(true);
 
+  const clearSession = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setToken(null);
+    setUser(null);
+  };
+
   useEffect(() => {
     if (token) {
       api.get("/profile")
         .then((res) => setUser(res.data))
-        .catch(() => logout())
+        .catch(() => clearSession())
         .finally(() => setLoading(false));
     } else {
       setLoading(false);
@@ -44,15 +51,12 @@ export function AuthProvider({ children }) {
   };
 
   const logout = async () => {
-  try {
-    await api.post("/logout"); // (اختياري إلا كان backend)
-  } catch {}
+    try {
+      await api.post("/logout");
+    } catch {}
 
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
-  setToken(null);
-  setUser(null);
-};
+    clearSession();
+  };
   
 
   return (

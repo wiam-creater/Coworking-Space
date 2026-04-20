@@ -19,8 +19,9 @@ const Login = () => {
     }
 
     try {
-      await login(email, password); 
-      navigate("/accueil"); 
+      const data = await login(email, password);
+      const destination = data?.user?.role === "admin" ? "/dashboard" : "/accueil";
+      navigate(destination);
     } catch {
       alert("Email ou mot de passe incorrect ");
     }

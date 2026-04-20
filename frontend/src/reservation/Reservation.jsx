@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Reservation.css";
+import api from "../api/axios";
 
 export default function Reservation() {
+  const navigate = useNavigate();
+  const [reservations, setReservations] = useState([]);
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchReservations = async () => {
+      try {
+        setLoading(true);
+        setError("");
+        const params = search.trim() ? { search: search.trim() } : {};
+        const { data } = await api.get("/reservations", { params });
+        setReservations(data);
+      } catch {
+        setError("Impossible de charger les reservations");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReservations();
+  }, [search]);
+
   return (
     <div className="body-bg">
 
@@ -15,10 +41,18 @@ export default function Reservation() {
 
         
         <div className="nav-links">
-          <a onClick={() => window.location.href = "/accueil"}>Accueil</a>
-          <a onClick={() => window.location.href = "/dashboard"}>Tableau de bord</a>
-          <a onClick={() => window.location.href = "/espace"}>Espaces</a>
-          <a className="active" onClick={() => window.location.href = "/membres"}>Gestion Membre</a>
+          <button type="button" className="nav-link" onClick={() => navigate("/accueil")}>
+            Accueil
+          </button>
+          <button type="button" className="nav-link" onClick={() => navigate("/dashboard")}>
+            Tableau de bord
+          </button>
+          <button type="button" className="nav-link" onClick={() => navigate("/espace")}>
+            Espaces
+          </button>
+          <button type="button" className="nav-link active" onClick={() => navigate("/membres")}>
+            Gestion Membre
+          </button>
         </div>
 
       </nav>
@@ -33,7 +67,12 @@ export default function Reservation() {
           </div>
 
           <div className="search-box">
-            <input type="text" placeholder="Search..." />
+            <input
+              type="text"
+              placeholder="Rechercher..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
           </div>
         </div>
 
@@ -43,33 +82,45 @@ export default function Reservation() {
             <thead>
               <tr>
                 <th>#ID</th>
+                <th>Membre</th>
                 <th>Espace</th>
                 <th>Date</th>
                 <th>Statut</th>
-                <th></th>
               </tr>
             </thead>
 
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><span className="status"></span></td>
-                <td className="text-right">
-                  <button className="action-btn">Voir</button>
-                </td>
-              </tr>
+              {loading && (
+                <tr>
+                  <td colSpan="5">Chargement...</td>
+                </tr>
+              )}
 
-              <tr>
-                <td>2.</td>
-                <td>Bureau C</td>
-                <td>15/11/2025</td>
-                <td><span className="status">En attente</span></td>
-                <td className="text-right">
-                  <button className="action-btn">Voir</button>
-                </td>
-              </tr>
+              {!loading && error && (
+                <tr>
+                  <td colSpan="5">{error}</td>
+                </tr>
+              )}
+
+              {!loading && !error && reservations.length === 0 && (
+                <tr>
+                  <td colSpan="5">Aucune reservation trouvee.</td>
+                </tr>
+              )}
+
+              {!loading &&
+                !error &&
+                reservations.map((reservation) => (
+                  <tr key={reservation.id}>
+                    <td>{reservation.id}</td>
+                    <td>{reservation.user?.name || "-"}</td>
+                    <td>{reservation.space?.name || "-"}</td>
+                    <td>{reservation.date || "-"}</td>
+                    <td>
+                      <span className="status">{reservation.status}</span>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

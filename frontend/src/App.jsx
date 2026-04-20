@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import Login from "./login/Login";
 import Accueil from "./accueil/Accueil";
@@ -24,6 +24,7 @@ function App() {
       <BrowserRouter>
         <Routes>
 
+          <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/accueil" element={<Accueil />} />
           <Route path="/login" element={<Login />} />
           <Route path="/payment" element={<Payment />} />
@@ -33,16 +34,16 @@ function App() {
           <Route path="/membres" element={<Membre />} />
           <Route path="/reserve" element={<Reserve />} />
           <Route path="/espace" element={<Espace />} />
-          <Route path="/dashboard" element={<Tablebord />} />
           <Route path="/offre" element={<Offre />} />
-          <Route 
-  path="/dashboard" 
-  element={
-    <ProtectedRoute>
-      <Tablebord />
-    </ProtectedRoute>
-  } 
-/>
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Tablebord />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/login" replace />} />
 
         </Routes>
       </BrowserRouter>

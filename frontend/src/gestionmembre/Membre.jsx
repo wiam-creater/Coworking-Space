@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Membre.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import api from "../api/axios";
 
 export default function Membre() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [members, setMembers] = useState([]);
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchMembers = async () => {
+      try {
+        setLoading(true);
+        setError("");
+        const params = search.trim() ? { search: search.trim() } : {};
+        const { data } = await api.get("/members", { params });
+        setMembers(data);
+      } catch {
+        setError("Impossible de charger les membres");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMembers();
+  }, [search]);
 
   return (
     <div className="layout">
@@ -40,10 +64,17 @@ export default function Membre() {
 
             <div className="top-bar">
               <div className="search small">
-                <input type="text" placeholder="Rechercher un membre..." />
+                <input
+                  type="text"
+                  placeholder="Rechercher un membre..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
               </div>
 
-              <button className="add-btn">Ajouter</button>
+              <button className="add-btn" onClick={() => navigate("/inscription")}>
+                Ajouter
+              </button>
             </div>
 
             {/* TABLE */}
@@ -59,15 +90,35 @@ export default function Membre() {
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <td>
-                      <div className="name"></div>
-                      <div className="job"></div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    
-                  </tr>
+                  {loading && (
+                    <tr>
+                      <td colSpan="3">Chargement...</td>
+                    </tr>
+                  )}
+
+                  {!loading && error && (
+                    <tr>
+                      <td colSpan="3">{error}</td>
+                    </tr>
+                  )}
+
+                  {!loading && !error && members.length === 0 && (
+                    <tr>
+                      <td colSpan="3">Aucun membre trouve.</td>
+                    </tr>
+                  )}
+
+                  {!loading &&
+                    !error &&
+                    members.map((member) => (
+                      <tr key={member.id}>
+                        <td>
+                          <div className="name">{member.name}</div>
+                        </td>
+                        <td>{member.email}</td>
+                        <td>{member.phone || "-"}</td>
+                      </tr>
+                    ))}
 
                 </tbody>
               </table>

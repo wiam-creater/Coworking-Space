@@ -1,11 +1,8 @@
 import React from "react";
 import "./Accueil.css";
-import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Accueil() {
-
-const { logout } = useAuth();
 const navigate = useNavigate();
 
 return ( <div>
@@ -18,7 +15,7 @@ return ( <div>
     </div>
 
     <ul className="menu">
-      <li onClick={() => navigate("/")}>Accueil</li>
+      <li onClick={() => navigate("/accueil")}>Accueil</li>
       <li onClick={() => navigate("/inscription")}>Inscription</li>
       <li onClick={() => navigate("/payment")}>Payment</li>
       <li onClick={() => navigate("/reserve")}>Reservation</li>

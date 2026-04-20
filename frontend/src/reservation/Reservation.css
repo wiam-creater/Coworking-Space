@@ -57,18 +57,19 @@
   gap: 40px;
 }
 
-.nav-links a {
+.nav-links .nav-link {
   font-family: "Inter", sans-serif;
   color: #c8a97e;
-  text-decoration: none;
   font-weight: 600;
   cursor: pointer;
   position: relative;
   font-size: 20px;
+  border: none;
+  background: transparent;
 }
 
 
-.nav-links .active::after {
+.nav-links .nav-link.active::after {
   content: "";
   position: absolute;
   width: 100%;

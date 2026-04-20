@@ -1,7 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Payment.css";
+import api from "../api/axios";
 
 export default function Paiements() {
+  const navigate = useNavigate();
+  const [payments, setPayments] = useState([]);
+  const [search, setSearch] = useState("");
+  const [activeTab, setActiveTab] = useState("paye");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchPayments = async () => {
+      try {
+        setLoading(true);
+        setError("");
+        const params = {
+          status: activeTab,
+        };
+        if (search.trim()) {
+          params.search = search.trim();
+        }
+        const { data } = await api.get("/payments", { params });
+        setPayments(data);
+      } catch {
+        setError("Impossible de charger les paiements");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPayments();
+  }, [activeTab, search]);
+
+  const getDescription = (payment) => {
+    if (payment.reservation?.space?.name && payment.reservation?.date) {
+      return `Reservation: ${payment.reservation.space.name} (${payment.reservation.date})`;
+    }
+    if (payment.subscription?.type) {
+      return `Abonnement ${payment.subscription.type}`;
+    }
+    return "Paiement";
+  };
+
   return (
     <div className="body-bg">
       <nav className="navbar">
@@ -14,11 +56,21 @@ export default function Paiements() {
 
           
         <div className="nav-links">
-          <a href="#" className="active"  onClick={() => window.location.href = "/accueil"}> Accueil</a>
-          <a href="#" onClick={() => window.location.href = "/contact"}> Contact</a>
-        <  a onClick={() => window.location.href = "/dashboard"}>Tableau de bord</a>
-          <a href="#" className="active" onClick={() => window.location.href = "/Detailespace"}>Espaces </a>
-          <a href="#" onClick={() => window.location.href = "/reservation"} >Reservation</a>
+          <button type="button" className="nav-link active" onClick={() => navigate("/accueil")}>
+            Accueil
+          </button>
+          <button type="button" className="nav-link" onClick={() => navigate("/contact")}>
+            Contact
+          </button>
+          <button type="button" className="nav-link" onClick={() => navigate("/dashboard")}>
+            Tableau de bord
+          </button>
+          <button type="button" className="nav-link active" onClick={() => navigate("/espace")}>
+            Espaces
+          </button>
+          <button type="button" className="nav-link" onClick={() => navigate("/reservation")}>
+            Reservation
+          </button>
         </div>
 
         
@@ -32,14 +84,29 @@ export default function Paiements() {
           </div>
 
           <div className="search-box">
-            <input type="text" placeholder="search" />
+            <input
+              type="text"
+              placeholder="Rechercher..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
            
           </div>
         </div>
 
         <div className="tabs">
-          <button className="tab-active">Paiements effectués</button>
-          <button className="tab">En attente</button>
+          <button
+            className={activeTab === "paye" ? "tab-active" : "tab"}
+            onClick={() => setActiveTab("paye")}
+          >
+            Paiements effectues
+          </button>
+          <button
+            className={activeTab === "en_attente" ? "tab-active" : "tab"}
+            onClick={() => setActiveTab("en_attente")}
+          >
+            En attente
+          </button>
         </div>
 
         <div className="table-container">
@@ -55,25 +122,41 @@ export default function Paiements() {
             </thead>
 
             <tbody>
-              <tr>
-                <td>1.</td>
-                <td>Réservation : Bureau A 9/11/2025</td>
-                <td>1000 DH</td>
-                <td><span className="status">En attente</span></td>
-                <td className="text-right">
-                  <button className="pay-btn">Payer </button>
-                </td>
-              </tr>
+              {loading && (
+                <tr>
+                  <td colSpan="5">Chargement...</td>
+                </tr>
+              )}
 
-              <tr>
-                <td>2.</td>
-                <td>Réservation : Bureau C 15/11/2025</td>
-                <td>500 DH</td>
-                <td><span className="status">En attente</span></td>
-                <td className="text-right">
-                  <button className="pay-btn">Payer </button>
-                </td>
-              </tr>
+              {!loading && error && (
+                <tr>
+                  <td colSpan="5">{error}</td>
+                </tr>
+              )}
+
+              {!loading && !error && payments.length === 0 && (
+                <tr>
+                  <td colSpan="5">Aucun paiement trouve.</td>
+                </tr>
+              )}
+
+              {!loading &&
+                !error &&
+                payments.map((payment) => (
+                  <tr key={payment.id}>
+                    <td>{payment.id}</td>
+                    <td>{getDescription(payment)}</td>
+                    <td>{payment.amount} DH</td>
+                    <td>
+                      <span className="status">{payment.status}</span>
+                    </td>
+                    <td className="text-right">
+                      <button className="pay-btn" disabled={payment.status === "paye"}>
+                        {payment.status === "paye" ? "Deja paye" : "Payer"}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
 
