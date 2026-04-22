@@ -1,54 +1,76 @@
 import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import "./index.css";
 
-import Login from "./login/Login";
-import Accueil from "./accueil/Accueil";
-import Payment from "./payment/Payment";
-import Inscription from "./inscription/Inscription";
-import Reservation from "./reservation/Reservation";
-import Membre from "./gestionmembre/Membre";
-import Reserve from "./reserve/Reserve";
-import Espace from "./espace/Espace";
-import Tablebord from "./tablebord/Tablebord";
-import Contact from "./contact/Contact";
-import Offre from "./offre/Offre";
+import Accueil           from "./pages/Accueil";
+import Login             from "./pages/Login";
+import Register          from "./pages/Register";
+import Espaces           from "./pages/Espaces";
+import Reserve           from "./pages/Reserve";
+import MesReservations   from "./pages/MesReservations";
+import Abonnement        from "./pages/Abonnement";
+import Dashboard         from "./pages/Dashboard";
+import AdminReservations from "./pages/AdminReservations";
 
+const getToken = () => localStorage.getItem("token");
+const getUser  = () => JSON.parse(localStorage.getItem("user") || "null");
 
-import ProtectedRoute from "./components/ProtectedRoute";
-
-import { AuthProvider } from "./context/AuthContext";
-
-function App() {
-  return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/accueil" element={<Accueil />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/inscription" element={<Inscription />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/reservation" element={<Reservation />} />
-          <Route path="/membres" element={<Membre />} />
-          <Route path="/reserve" element={<Reserve />} />
-          <Route path="/espace" element={<Espace />} />
-          <Route path="/offre" element={<Offre />} />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Tablebord />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="*" element={<Navigate to="/login" replace />} />
-
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
-  );
+function PrivateRoute({ children }) {
+  return getToken() ? children : <Navigate to="/login" replace />;
 }
 
-export default App;
+function AdminRoute({ children }) {
+  const u = getUser();
+  if (!getToken())         return <Navigate to="/login"   replace />;
+  if (u?.role !== "admin") return <Navigate to="/accueil" replace />;
+  return children;
+}
+
+function GuestRoute({ children }) {
+  return !getToken() ? children : <Navigate to="/accueil" replace />;
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+
+        {/* ── Publiques ── */}
+        <Route path="/"        element={<Accueil />} />
+        <Route path="/accueil" element={<Accueil />} />
+        <Route path="/espaces" element={<Espaces />} />
+
+        {/* ── Guest seulement ── */}
+        <Route path="/login"
+          element={<GuestRoute><Login /></GuestRoute>}
+        />
+        <Route path="/register"
+          element={<GuestRoute><Register /></GuestRoute>}
+        />
+
+        {/* ── Membre connecté ── */}
+        <Route path="/reserve"
+          element={<PrivateRoute><Reserve /></PrivateRoute>}
+        />
+        <Route path="/mes-reservations"
+          element={<PrivateRoute><MesReservations /></PrivateRoute>}
+        />
+        <Route path="/abonnement"
+          element={<PrivateRoute><Abonnement /></PrivateRoute>}
+        />
+
+        {/* ── Admin seulement ── */}
+        <Route path="/dashboard"
+          element={<AdminRoute><Dashboard /></AdminRoute>}
+        />
+        <Route path="/admin/reservations"
+          element={<AdminRoute><AdminReservations /></AdminRoute>}
+        />
+
+        {/* ── Fallback ── */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+
+      </Routes>
+    </BrowserRouter>
+  );
+}
